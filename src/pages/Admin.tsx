@@ -1131,7 +1131,9 @@ const Admin = () => {
                         )}
                       </div>
                       <button
-                        onClick={() => product.id && handleProductDelete(product.id)}
+                        onClick={() =>
+                          product.id && handleProductDelete(product.id)
+                        }
                         className="w-full mt-3 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center gap-2 transition-colors"
                       >
                         <Trash2 size={16} />
@@ -1278,7 +1280,9 @@ const Admin = () => {
                         {project.location}
                       </p>
                       <button
-                        onClick={() => project.id && handleProjectDelete(project.id)}
+                        onClick={() =>
+                          project.id && handleProjectDelete(project.id)
+                        }
                         className="w-full px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center justify-center gap-2 transition-colors"
                       >
                         <Trash2 size={16} />

@@ -582,7 +582,9 @@ export async function deleteServiceImage(
 /**
  * Delete a product by ID
  */
-export async function deleteProduct(productId: string): Promise<FirestoreResponse<void>> {
+export async function deleteProduct(
+  productId: string,
+): Promise<FirestoreResponse<void>> {
   try {
     if (!productId?.trim()) {
       return { success: false, error: "Product ID is required" };
@@ -606,7 +608,9 @@ export async function deleteProduct(productId: string): Promise<FirestoreRespons
 /**
  * Delete a project by ID
  */
-export async function deleteProject(projectId: string): Promise<FirestoreResponse<void>> {
+export async function deleteProject(
+  projectId: string,
+): Promise<FirestoreResponse<void>> {
   try {
     if (!projectId?.trim()) {
       return { success: false, error: "Project ID is required" };

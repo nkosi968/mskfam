@@ -62,8 +62,7 @@ const Services = () => {
       description: serviceDescriptions[title] || "Custom carpentry solution.",
     }))
     .sort(
-      (a, b) =>
-        serviceOrder.indexOf(a.title) - serviceOrder.indexOf(b.title),
+      (a, b) => serviceOrder.indexOf(a.title) - serviceOrder.indexOf(b.title),
     );
   return (
     <section id="services" className="py-24 bg-background">

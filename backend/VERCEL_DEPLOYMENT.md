@@ -27,17 +27,20 @@ This guide will help you deploy your backend server to Vercel.
 After importing, you'll see a configuration screen. Add these environment variables:
 
 **Required Variables:**
+
 - **YOCO_SECRET_KEY** - Your Yoco API secret key
   - Get this from your Yoco dashboard: https://portal.yoco.com
   - Should look like: `sk_live_...` or `sk_test_...`
 
 **Optional Variables:**
+
 - **FIREBASE_PROJECT_ID** - Your Firebase project ID (optional, already in code)
   - Value: `mskweb-1db5c`
 
 ### 3. Set Build Settings
 
 The deployment should auto-detect the build settings:
+
 - **Root Directory**: Leave as root or set to `backend/` if only deploying backend
 - **Build Command**: Leave blank (we're not building, just deploying Node.js)
 - **Output Directory**: Leave blank
@@ -52,11 +55,13 @@ The deployment should auto-detect the build settings:
 ## Testing Your Deployment
 
 ### Check Health Endpoint
+
 ```bash
 curl https://your-backend-url.vercel.app/health
 ```
 
 Response should be:
+
 ```json
 {
   "status": "OK",
@@ -66,6 +71,7 @@ Response should be:
 ```
 
 ### Check Root Endpoint
+
 ```bash
 curl https://your-backend-url.vercel.app/
 ```
@@ -103,8 +109,8 @@ For Yoco payment webhooks to work:
 
 - **CORS Settings**: Already configured for:
   - localhost (development)
-  - *.vercel.app (your Vercel deployments)
-  - *.netlify.app (alternative deployments)
+  - \*.vercel.app (your Vercel deployments)
+  - \*.netlify.app (alternative deployments)
 
 - **Logs**: View deployment logs in Vercel dashboard
   - Click on your project
@@ -117,6 +123,7 @@ For Yoco payment webhooks to work:
 All variables are stored as Vercel secrets and are prefixed with `@`:
 
 In `vercel.json`:
+
 ```json
 "env": {
   "YOCO_SECRET_KEY": "@yoco_secret_key",
@@ -125,6 +132,7 @@ In `vercel.json`:
 ```
 
 To add more variables:
+
 1. Go to Project Settings → Environment Variables
 2. Add new variable
 3. Reference in `vercel.json` with `@` prefix
@@ -132,20 +140,24 @@ To add more variables:
 ## Troubleshooting
 
 ### "YOCO_SECRET_KEY not set" warning
+
 - Add the environment variable in Vercel Project Settings
 - Redeploy after adding
 
 ### Webhooks not working
+
 - Check webhook URL in Yoco Portal
 - Verify endpoint: `POST /api/webhooks/yoco`
 - Check Vercel deployment logs for errors
 
 ### CORS errors from frontend
+
 - Update CORS origins in `api/index.js`
 - Add your frontend URL to the `origin` array
 - Redeploy
 
 ### Firebase connection issues
+
 - Verify Firebase credentials are correct in `api/index.js`
 - Check Vercel logs for Firebase initialization errors
 - Ensure Firebase rules allow access
