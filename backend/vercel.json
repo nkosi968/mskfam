@@ -11,9 +11,5 @@
       "src": "/(.*)",
       "dest": "/api/index.js"
     }
-  ],
-  "env": {
-    "YOCO_SECRET_KEY": "@yoco_secret_key",
-    "FIREBASE_PROJECT_ID": "@firebase_project_id"
-  }
+  ]
 }
