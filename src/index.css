@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Light / mostly-white theme */
+    --background: 0 0% 98%;
+    --foreground: 222 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 15% 12%;
+
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 6% 96%;
+    --secondary-foreground: 222 8% 30%;
+
+    --muted: 220 6% 95%;
+    --muted-foreground: 220 7% 55%;
+
+    --accent: 0 72% 51%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 7% 88%;
+    --input: 220 7% 94%;
+    --ring: 0 72% 51%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 222 15% 12%;
+    --sidebar-primary: 0 72% 51%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 6% 96%;
+    --sidebar-accent-foreground: 222 8% 30%;
+    --sidebar-border: 220 6% 92%;
+    --sidebar-ring: 0 72% 51%;
+
+    /* Custom tokens */
+    --red-glow: 0 12px 40px hsl(0 72% 51% / 0.18);
+    --red-glow-strong: 0 20px 60px hsl(0 72% 51% / 0.22);
+    --text-gradient: linear-gradient(135deg, hsl(0 72% 51%), hsl(0 72% 65%));
+    --dark-gradient: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Outfit", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bebas Neue", system-ui, sans-serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .red-glow {
+    box-shadow: var(--red-glow);
+  }
+
+  .red-glow-strong {
+    box-shadow: var(--red-glow-strong);
+  }
+}
