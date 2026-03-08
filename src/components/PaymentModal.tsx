@@ -30,6 +30,15 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
   if (!isOpen) return null;
 
+  const getBackendUrl = () => {
+    const url = import.meta.env.VITE_BACKEND_URL;
+    if (!url) {
+      console.warn("VITE_BACKEND_URL not set, using default");
+      return "https://mskmain.vercel.app";
+    }
+    return url;
+  };
+
   const handlePayment = async () => {
     // Validate amount
     if (amount <= 0) {
@@ -40,6 +49,9 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     setIsProcessing(true);
 
     try {
+      const backendUrl = getBackendUrl();
+      console.log("Using backend URL:", backendUrl);
+
       // Prepare metadata
       const metadata = {
         orderId: orderId || "order_" + Date.now(),
@@ -49,9 +61,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
         orderDescription: orderDescription || "Product Payment",
       };
 
+      console.log("Creating checkout with metadata:", metadata);
+
       // Create checkout session via backend
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/payments/checkout`,
+        `${backendUrl}/api/payments/checkout`,
         {
           method: "POST",
           headers: {
@@ -67,6 +81,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
       const data = await response.json();
 
+      console.log("Checkout response:", data);
+
       if (!response.ok || !data.success) {
         throw new Error(data.error || "Failed to create payment session");
       }
@@ -80,6 +96,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
       setIsProcessing(false);
     } catch (error: any) {
+      console.error("Payment error:", error);
       setIsProcessing(false);
       onPaymentError(
         error.message || "Payment processing failed. Please try again.",
